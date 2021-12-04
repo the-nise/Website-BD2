@@ -18,6 +18,7 @@
                 Para consultar selecione os filtros e clique em buscar.
             </h2>
         </div>
+        <!-- FORM DE FILTRO AQUI -->
         <table class="table">
             <thead>
                 <tr>
@@ -32,6 +33,9 @@
             </thead>
             <tbody>
                 <?php
+                //form que redireciona para essa pagina
+                //usa tag php para checar se ha filtros
+                // verifica se tá empty, se não tiver, clausula where usando filtro, else sem filtro
                 // $conex1 = pg_connect("host=localhost port=5432 dbname=pauload user=postgres password=changeme");
                 // pg_close($conex1);
                 // echo "Conexão realizada com sucesso!";
