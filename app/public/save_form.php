@@ -115,5 +115,5 @@ if($isLogista || $isDespachante)
     );
 }
 
-header("Location: /register.php");
+header("Location: register.php");
 exit();
