@@ -46,11 +46,11 @@ $insertQuery =
             )";
 
 $dbconnect = pg_connect (
-    "host = db
+    "host = 192.168.122.58
     port = 5432  
-    dbname = evento  
-    user = evento
-    password = evento"
+    dbname = distrib  
+    user = bccibm21g3
+    password = 5100"
 ) or die (
     "Falha na conexão!".pg_last_error()
 );
@@ -67,6 +67,7 @@ $queryResult = pg_exec(
 
 $id = pg_fetch_array($queryResult, 0)["idusuario"];
 
+pg_close($dbconnect);
 if($isLogista == 1)
 {
     $insertQuery = 

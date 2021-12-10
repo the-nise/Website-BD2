@@ -67,6 +67,7 @@
                 <input class="input" name="seqPolo" type="text"><br>
                 </div>
                 <button class="button is-primary" type="submit">Salvar</button>
+                <a href='index.php' class="button is-link is-outlined">Retornar</a>
             </form>
         </div>
     </section>

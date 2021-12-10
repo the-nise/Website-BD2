@@ -52,9 +52,10 @@
             <br>
             <br>
             <button class="button is-success" type="submit">
-                
+               
             Filtrar
             </button>
+            <a href='index.php' class="button is-link is-outlined">Retornar</a>
             </div>
             
         </form>
@@ -133,11 +134,11 @@
                 }
 
                 $dbconnect = pg_connect (
-                    "host = db
+                    "host = 192.168.122.58
                     port = 5432  
-                    dbname = evento  
-                    user = evento
-                    password = evento"
+                    dbname = distrib  
+                    user = bccibm21g3
+                    password = 5100"
                 ) or die (
                     "Falha na conexão!".pg_last_error()
                 );
@@ -166,6 +167,9 @@
                 );
                 //se nao ha nada no data, retornar "nenhum resulto correspondente"
                 $data = pg_fetch_all($result);
+
+                pg_close($dbconnect);
+
 
                 //echo implode("|", array_keys($data[0]));
 
