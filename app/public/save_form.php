@@ -67,12 +67,12 @@ $queryResult = pg_exec(
 
 $id = pg_fetch_array($queryResult, 0)["idusuario"];
 
-pg_close($dbconnect);
+
 if($isLogista == 1)
 {
     $insertQuery = 
     "INSERT INTO 
-        lojista
+        Lojista
             (Usuario_idUsuario,
             loja_polo_regiao_idregiao, 
             loja_polo_secPolo)
@@ -114,6 +114,6 @@ if($isLogista || $isDespachante)
         $insertQuery
     );
 }
-
+pg_close($dbconnect);
 header("Location: register.php");
 exit();
