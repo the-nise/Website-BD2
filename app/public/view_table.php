@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Consulta</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/bulma.css">
 </head>
 
 <body>
@@ -15,37 +15,50 @@
                 Trabalho de Base de Dados 2
             </h1>
             <h2 class="subtitle">
-                Para consultar selecione os filtros e clique em buscar.
+                Para consultar, preencha os filtros desejados e clique em buscar.
             </h2>
         </div>
         <!-- FORM DE FILTRO AQUI -->
-        <form method="GET" action="">
-            <label>Nome</label>
-            <input name="Nome" type="text" placeholder="Nome">
-            <label>Sobrenome</label>
-            <input name="Sobrenome" type="text" placeholder="Sobrenome"><br>
-            <label>Idade</label>
-            <input name="Idade" type="text" placeholder="Idade">
-            <label>CPF</label>
-            <input name="CPF" type="text" placeholder="CPF"><br>
-            <label>Data de Início</label>
-            <input name="Data_de_inicio" type="text" placeholder="Data de Início">
-            <label>Cargo</label>
-            <select name="Cargo">
+        <br>
+        <br>
+        <form class="columns" method="GET" action="">
+            <div class="column">
+            <label class="label" >Nome</label>
+            <input class="input" name="Nome" type="text" placeholder="Nome">
+            <label class="label">Sobrenome</label>
+            <input class="input" name="Sobrenome" type="text" placeholder="Sobrenome">
+            <label class="label">Idade</label>
+            <input class="input" name="Idade" type="text" placeholder="Idade">
+            <label class="label">CPF</label>
+            <input class="input" name="CPF" type="text" placeholder="CPF">
+            </div>
+            <div class="column">
+            
+            <label class="label">Data de Início</label>
+            <input class="input" name="Data_de_inicio" type="text" placeholder="Data de Início">
+            <label class="label">Cargo</label>
+            <select class="select" name="Cargo">
                 <option value="">Não selecionado</option>
                 <option value="isLojista">Lojista</option>
                 <option value="isDespachante">Despachante</option>
                 <option value="isAdmPolo">Administrador Polo</option>
                 <option value="isAdmRegiao">Administrador Região</option>
                 <option value="isAdmEmpresa">Administrador da Empresa</option>
-            </select><br>
-            <label>Data de Nascimento</label>
-            <input name="Data_de_nasc" type="text" placeholder="Data de Nascimento">
-
-            <button type="submit">
-                Filtrar
+            </select>
+            <br>
+            <label class="label">Data de Nascimento</label>
+            
+            <input class="input" name="Data_de_nasc" type="text" placeholder="Data de Nascimento">
+            <br>
+            <br>
+            <button class="button is-success" type="submit">
+                
+            Filtrar
             </button>
+            </div>
+            
         </form>
+        
 
         <table class="table">
             <thead>
@@ -78,27 +91,27 @@
                         array_push($filter, $_GET["Nome"]);
                         array_push($sql, "nome");
                     }
-                    elseif($_GET["Sobrenome"] != NULL)
+                    if($_GET["Sobrenome"] != NULL)
                     {
                         array_push($filter, $_GET["Sobrenome"]);
                         array_push($sql, "sobrenome");
                     }
-                    elseif($_GET["Idade"] != NULL)
+                    if($_GET["Idade"] != NULL)
                     {
                         array_push($filter, $_GET["Idade"]);
                         array_push($sql, "idade");
                     }
-                    elseif($_GET["CPF"] != NULL)
+                    if($_GET["CPF"] != NULL)
                     {
                         array_push($filter, $_GET["CPF"]);
                         array_push($sql, "CPf");
                     }
-                    elseif($_GET["Data_de_inicio"] != NULL)
+                    if($_GET["Data_de_inicio"] != NULL)
                     {
                         array_push($filter, $_GET["Data_de_inicio"]);
                         array_push($sql, "dat_ini");
                     }
-                    elseif(array_key_exists("Cargo", $_GET))
+                    if(array_key_exists("Cargo", $_GET))
                     {
                         if($_GET["Cargo"] != NULL)
                         {
@@ -112,7 +125,7 @@
                         }
                         
                     }
-                    elseif($_GET["Data_de_nasc"] != NULL)
+                    if($_GET["Data_de_nasc"] != NULL)
                     {
                         array_push($filter, $_GET["Data_de_nasc"]);
                         array_push($sql, "DATA_NASC");

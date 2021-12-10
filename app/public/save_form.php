@@ -12,6 +12,11 @@ $isDespachante = ($cargo == 'isDespachante') ? 1 : 0;
 $isAdmPolo = ($cargo == 'isAdmPolo') ? 1 : 0;
 $isAdmRegiao = ($cargo == 'isAdmRegiao') ? 1 : 0;
 $isAdmEmpresa = ($cargo == 'isAdmEmpresa') ? 1 : 0;
+$tamanhoColeteCorretorDePostura = $_POST["tamanhoColeteCorretorDePostura"];
+$formacao = $_POST["formacao"];
+$idRegiao = $_POST["idRegiao"];
+$seqPolo = $_POST["seqPolo"];
+
 $insertQuery =
     "INSERT INTO
         usuario 
@@ -54,3 +59,60 @@ $queryResult = pg_exec(
     $dbconnect,
     $insertQuery
 );
+
+$queryResult = pg_exec(
+    $dbconnect,
+    "SELECT * FROM Usuario WHERE CPf = '" . $cpf . "';"
+);
+
+$id = pg_fetch_array($queryResult, 0)["idusuario"];
+
+if($isLogista == 1)
+{
+    $insertQuery = 
+    "INSERT INTO 
+        lojista
+            (Usuario_idUsuario,
+            loja_polo_regiao_idregiao, 
+            loja_polo_secPolo)
+        VALUES
+            ('$id',
+            '$idRegiao',
+            '$seqPolo');
+    INSERT INTO
+        curriculo
+            (formacao, 
+            lojista_Usuario_idUsuario)
+        VALUES
+            ('$formacao',
+            '$id');
+
+    ";
+}
+elseif($isDespachante == 1)
+{
+    $insertQuery =
+    "INSERT INTO
+        despachante
+            (Usuario_idUsuario,
+            polo_regiao_idregiao,
+            polo_secPolo,
+            tamanhoColeteCorretorDePostura)
+        VALUES
+            ('$id', 
+            '$idRegiao',
+            '$seqPolo',
+            '$tamanhoColeteCorretorDePostura');
+    ";
+}
+
+if($isLogista || $isDespachante)
+{
+    $queryResult = pg_exec(
+        $dbconnect,
+        $insertQuery
+    );
+}
+
+header("Location: /register.php");
+exit();
